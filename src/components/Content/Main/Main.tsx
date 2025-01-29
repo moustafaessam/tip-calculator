@@ -7,13 +7,19 @@ type MainProps = {
 };
 
 export type FormInputs = {
-  bill: string;
+  bill: number;
   tip: string;
-  people: string;
+  people: number;
 };
 
 export default function Main({ children }: MainProps) {
-  const form = useForm<FormInputs>();
+  const form = useForm<FormInputs>({
+    defaultValues: {
+      bill: 0,
+      tip: "",
+      people: 0,
+    },
+  });
   const { control, handleSubmit } = form;
   function onSubmit(data: FormInputs) {
     console.log(data);
@@ -21,7 +27,7 @@ export default function Main({ children }: MainProps) {
   return (
     <FormProvider {...form}>
       <StyledMain onSubmit={handleSubmit(onSubmit)} noValidate>
-        {children}
+        {children} <button type="submit">Submit</button>
       </StyledMain>
       <DevTool control={control} />
     </FormProvider>

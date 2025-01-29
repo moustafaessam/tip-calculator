@@ -13,7 +13,24 @@ export default function Input({ src, id, name }: InputProps) {
   return (
     <StyledInputContainer>
       <img src={src} />
-      <StyledInput placeholder="0" type="text" id={id} {...register(name)} />
+      <StyledInput
+        type="number"
+        id={id}
+        {...register(name, {
+          valueAsNumber: true,
+          required: { value: true, message: "Can't be zero" },
+          validate: {
+            zeroCheck: (fieldValue) => {
+              return (
+                (typeof fieldValue === "number" &&
+                  !isNaN(fieldValue) &&
+                  fieldValue > 0) ||
+                "Can't be zero"
+              );
+            },
+          },
+        })}
+      />
     </StyledInputContainer>
   );
 }

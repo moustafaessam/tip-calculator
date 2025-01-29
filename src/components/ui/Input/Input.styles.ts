@@ -20,7 +20,14 @@ export const StyledInput = styled.input`
   background-color: inherit;
   max-width: 8.9rem;
   color: #7f9d9f;
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: none;
   &::placeholder {
     color: #7f9d9f;
+  }
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
   }
 `;
