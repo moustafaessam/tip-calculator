@@ -56,6 +56,7 @@ export default function Tip() {
         <StyledInput
           placeholder="Custom"
           type="number"
+          inputMode="numeric"
           {...register("customTip", {
             valueAsNumber: true,
             validate: {

@@ -19,6 +19,7 @@ export default function Input({ src, id, name, error }: InputProps) {
       <img src={src} />
       <StyledInput
         placeholder="0"
+        inputMode="numeric"
         type="number"
         id={id}
         {...register(name, {
