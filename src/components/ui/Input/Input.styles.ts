@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-export const StyledInputContainer = styled.div`
+type StyledInputProps = {
+  styleError: boolean;
+  isFocused: boolean;
+};
+
+export const StyledInputContainer = styled.div<StyledInputProps>`
+  border: ${({ styleError }) =>
+    styleError === true ? "1px solid #E17052" : "none"};
+  border: ${({ isFocused }) => (isFocused === true ? "2px solid #26C2AE" : "")};
   height: 4.8rem;
   width: 100%;
   background-color: #f3f9fa;

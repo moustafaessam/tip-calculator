@@ -15,12 +15,17 @@ export default function People() {
     <StyledPeople htmlFor="people">
       <StyledBillWrapperForErrorHandling>
         <StyledPeopleHeader>Number of People</StyledPeopleHeader>
-        {errors.people && errors?.people.message && (
+        {errors.people?.message && (
           <StyledError>{errors.people.message}</StyledError>
         )}
       </StyledBillWrapperForErrorHandling>
 
-      <Input src="/images/icon-person.svg" id="people" name="people" />
+      <Input
+        src="/images/icon-person.svg"
+        id="people"
+        name="people"
+        error={errors.people === undefined ? false : true}
+      />
     </StyledPeople>
   );
 }

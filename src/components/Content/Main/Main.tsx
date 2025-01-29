@@ -13,13 +13,7 @@ export type FormInputs = {
 };
 
 export default function Main({ children }: MainProps) {
-  const form = useForm<FormInputs>({
-    defaultValues: {
-      bill: 0,
-      tip: "",
-      people: 0,
-    },
-  });
+  const form = useForm<FormInputs>();
   const { control, handleSubmit } = form;
   function onSubmit(data: FormInputs) {
     console.log(data);

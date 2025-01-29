@@ -12,16 +12,22 @@ export default function Bill() {
   const {
     formState: { errors },
   } = useFormContext<FormInputs>();
+  console.log(errors.bill);
   return (
     <StyledBill htmlFor="bill">
       <StyledBillWrapperForErrorHandling>
         <StyledBillHeader>Bill</StyledBillHeader>
-        {errors.bill && errors?.bill.message && (
+        {errors.bill?.message && (
           <StyledError>{errors.bill.message}</StyledError>
         )}
       </StyledBillWrapperForErrorHandling>
 
-      <Input src="/images/icon-dollar.svg" id="bill" name="bill" />
+      <Input
+        src="/images/icon-dollar.svg"
+        id="bill"
+        name="bill"
+        error={errors.bill === undefined ? false : true}
+      />
     </StyledBill>
   );
 }
