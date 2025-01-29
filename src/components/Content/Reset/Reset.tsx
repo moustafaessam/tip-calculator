@@ -4,9 +4,11 @@ import { useFormContext } from "react-hook-form";
 
 export default function Reset() {
   const form = useFormContext<FormInputs>();
-  const { reset } = form;
+  const { resetField } = form;
   const handleReset = () => {
-    reset();
+    resetField("bill");
+    resetField("people");
+    resetField("tip");
   };
   return (
     <StyledButton type="reset" onClick={handleReset}>
