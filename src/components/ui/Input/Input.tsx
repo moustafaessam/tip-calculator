@@ -18,29 +18,28 @@ export default function Input({ src, id, name, error }: InputProps) {
     <StyledInputContainer styleError={error} isFocused={isFocused}>
       <img src={src} />
       <StyledInput
+        placeholder="0"
         type="number"
         id={id}
-        placeholder="0"
         {...register(name, {
           valueAsNumber: true,
-          required: { value: true, message: "Can't be zero" },
+          required: { value: true, message: "Can't be zero or below" },
           validate: {
             zeroCheck: (fieldValue) => {
               return (
                 (typeof fieldValue === "number" &&
                   !isNaN(fieldValue) &&
                   fieldValue > 0) ||
-                "Can't be zero"
+                "Can't be zero or below"
               );
             },
           },
         })}
-        onFocus={(e) => {
-          console.log(setIsFocused(true));
-          form.setValue(name, e.target.value, { shouldTouch: true });
+        onFocus={() => {
+          setIsFocused(true);
         }}
         onBlur={() => {
-          console.log(setIsFocused(false));
+          setIsFocused(false);
         }}
       />
     </StyledInputContainer>

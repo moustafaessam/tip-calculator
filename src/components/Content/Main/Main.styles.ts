@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledMain = styled.form`
   max-width: 92rem;
-  width: 100%;
   padding: 1.5rem;
   background-color: white;
   border-radius: 2rem;
@@ -12,7 +11,7 @@ export const StyledMain = styled.form`
   @media (max-width: 768px) {
     & {
       flex-grow: 1;
-      max-width: auto;
+      max-width: fit-content;
       flex-direction: column;
       gap: 3.2rem;
     }

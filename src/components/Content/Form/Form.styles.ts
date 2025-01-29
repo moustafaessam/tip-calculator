@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const StyledForm = styled.section`
-  flex-grow: 1;
+  min-width: 41.3rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4rem;

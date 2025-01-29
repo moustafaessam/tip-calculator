@@ -34,6 +34,13 @@ export const StyledTipLabel = styled.label`
   justify-content: center;
   cursor: pointer;
   border-radius: 1rem;
+  &:hover {
+    background-color: #9fe8df;
+  }
+  &:has(input:checked) {
+    background-color: #26c2ae;
+    color: #00474b;
+  }
 `;
 
 export const StyledTipNumber = styled.p`
@@ -43,4 +50,34 @@ export const StyledTipNumber = styled.p`
 
 export const StyledTipRadio = styled.input`
   appearance: none;
+`;
+
+export const StyledInput = styled.input`
+  font-family: "Space Mono Bold";
+  text-align: center;
+  border: none;
+  background-color: #f3f9fa;
+  border-radius: 1rem;
+  appearance: none;
+  color: #547878;
+  font-size: 2.4rem;
+  min-width: 11.8rem;
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  &:focus {
+    outline: none;
+  }
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  &:focus {
+    border: 2px solid #26c2ae;
+  }
+`;
+
+export const StyledlWrapperForErrorHandling = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

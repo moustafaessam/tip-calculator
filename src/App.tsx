@@ -22,8 +22,10 @@ function App() {
           <People />
         </Form>
         <Result>
-          <TipResult />
-          <TotalResult />
+          <div>
+            <TipResult />
+            <TotalResult />
+          </div>
           <Reset />
         </Result>
       </Main>

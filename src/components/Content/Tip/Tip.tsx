@@ -1,3 +1,5 @@
+import { useFormContext } from "react-hook-form";
+import { FormInputs } from "../Main/Main";
 import {
   StyledTipRadio,
   StyledTipContainer,
@@ -5,66 +7,72 @@ import {
   StyledTipOptions,
   StyledTipLabel,
   StyledTipNumber,
+  StyledInput,
+  StyledlWrapperForErrorHandling,
 } from "./Tip.styles";
-
-import { useFormContext } from "react-hook-form";
-import { FormInputs } from "../Main/Main";
+import { StyledError } from "../Bill/Bill.styles";
+import { useEffect } from "react";
 
 export default function Tip() {
-  const { register } = useFormContext<FormInputs>();
+  const {
+    register,
+    formState: { errors, dirtyFields },
+    resetField,
+    watch,
+  } = useFormContext<FormInputs>();
+
+  const customTipInput = watch("customTip");
+
+  useEffect(() => {
+    if (customTipInput !== undefined) {
+      resetField("tip", { keepTouched: true });
+    }
+  }, [customTipInput, resetField]);
+
   return (
     <StyledTipContainer>
-      <StyledTipHeader>Select Tip %</StyledTipHeader>
+      <StyledlWrapperForErrorHandling>
+        <StyledTipHeader>Select Tip %</StyledTipHeader>
+        {errors.customTip?.message && (
+          <StyledError>{errors.customTip.message}</StyledError>
+        )}
+      </StyledlWrapperForErrorHandling>
+
       <StyledTipOptions>
-        <StyledTipLabel htmlFor="5">
-          <StyledTipNumber>5%</StyledTipNumber>
-          <StyledTipRadio type="radio" value="5" id="5" {...register("tip")} />
-        </StyledTipLabel>
-        <StyledTipLabel htmlFor="10">
-          <StyledTipNumber>10%</StyledTipNumber>
-          <StyledTipRadio
-            type="radio"
-            value="10"
-            id="10"
-            {...register("tip")}
-          />
-        </StyledTipLabel>
-        <StyledTipLabel htmlFor="15">
-          <StyledTipNumber>15%</StyledTipNumber>
-          <StyledTipRadio
-            type="radio"
-            value="15"
-            id="15"
-            {...register("tip")}
-          />
-        </StyledTipLabel>
-        <StyledTipLabel htmlFor="20">
-          <StyledTipNumber>20%</StyledTipNumber>
-          <StyledTipRadio
-            type="radio"
-            value="20"
-            id="20"
-            {...register("tip")}
-          />
-        </StyledTipLabel>
-        <StyledTipLabel htmlFor="25">
-          <StyledTipNumber>25%</StyledTipNumber>
-          <StyledTipRadio
-            type="radio"
-            value="25"
-            id="25"
-            {...register("tip")}
-          />
-        </StyledTipLabel>
-        <StyledTipLabel htmlFor="30">
-          <StyledTipNumber>30%</StyledTipNumber>
-          <StyledTipRadio
-            type="radio"
-            value="30"
-            id="30"
-            {...register("tip")}
-          />
-        </StyledTipLabel>
+        {[5, 10, 15, 20, 25].map((tip) => (
+          <StyledTipLabel key={tip} htmlFor={`${tip}`}>
+            <StyledTipNumber>{tip}%</StyledTipNumber>
+            <StyledTipRadio
+              type="radio"
+              value={tip}
+              id={`${tip}`}
+              {...register("tip", { valueAsNumber: true })}
+              onClick={() => {
+                resetField("customTip", { keepTouched: true });
+              }}
+            />
+          </StyledTipLabel>
+        ))}
+        <StyledInput
+          placeholder="Custom"
+          type="number"
+          {...register("customTip", {
+            valueAsNumber: true,
+            validate: {
+              zeroCheck: (fieldValue) => {
+                if (dirtyFields.customTip) {
+                  return (
+                    (typeof fieldValue === "number" &&
+                      !isNaN(fieldValue) &&
+                      fieldValue >= 0) ||
+                    "Can't be below zero"
+                  );
+                }
+                return true;
+              },
+            },
+          })}
+        />
       </StyledTipOptions>
     </StyledTipContainer>
   );

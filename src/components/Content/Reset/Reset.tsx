@@ -9,6 +9,7 @@ export default function Reset() {
     resetField("bill");
     resetField("people");
     resetField("tip");
+    resetField("customTip");
   };
   return (
     <StyledButton type="reset" onClick={handleReset}>

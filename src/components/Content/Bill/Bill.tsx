@@ -12,7 +12,6 @@ export default function Bill() {
   const {
     formState: { errors },
   } = useFormContext<FormInputs>();
-  console.log(errors.bill);
   return (
     <StyledBill htmlFor="bill">
       <StyledBillWrapperForErrorHandling>

@@ -11,4 +11,8 @@ export const StyledButton = styled.button`
   border: none;
   font-size: 2rem;
   border-radius: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #9fe8df;
+  }
 `;

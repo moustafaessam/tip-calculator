@@ -7,7 +7,7 @@ type StyledInputProps = {
 
 export const StyledInputContainer = styled.div<StyledInputProps>`
   border: ${({ styleError }) =>
-    styleError === true ? "1px solid #E17052" : "none"};
+    styleError === true ? "2px solid #E17052" : "none"};
   border: ${({ isFocused }) => (isFocused === true ? "2px solid #26C2AE" : "")};
   height: 4.8rem;
   width: 100%;

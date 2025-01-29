@@ -1,5 +1,9 @@
 import { StyledResultOutput } from "./ResultOutput.styles";
 
-export default function ResultOutput() {
-  return <StyledResultOutput>$0.00</StyledResultOutput>;
+type ResultOutputProps = {
+  children: React.ReactNode;
+};
+
+export default function ResultOutput({ children }: ResultOutputProps) {
+  return <StyledResultOutput>${children}</StyledResultOutput>;
 }
